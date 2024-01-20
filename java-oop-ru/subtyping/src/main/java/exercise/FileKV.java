@@ -6,11 +6,10 @@ import java.util.Map;
 // BEGIN
 public class FileKV implements KeyValueStorage {
     private final String path;
-    private final Map<String, String> map;
 
     public FileKV(String path, Map<String, String> map) {
         this.path = path;
-        this.map = new HashMap<>(map);
+        map.forEach(this::set);
     }
 
     @Override
@@ -18,8 +17,7 @@ public class FileKV implements KeyValueStorage {
         String data = Utils.readFile(path);
         Map<String, String> db = Utils.unserialize(data);
         db.put(key, value);
-        String result = Utils.serialize(db);
-        Utils.writeFile(path, result);
+        Utils.writeFile(path, Utils.serialize(db));
     }
 
     @Override
@@ -27,23 +25,20 @@ public class FileKV implements KeyValueStorage {
         String data = Utils.readFile(path);
         Map<String, String> db = Utils.unserialize(data);
         db.remove(key);
-        String result = Utils.serialize(db);
-        Utils.writeFile(path, result);
+        Utils.writeFile(path, Utils.serialize(db));
     }
 
     @Override
     public String get(String key, String defaultValue) {
         String data = Utils.readFile(path);
         Map<String, String> db = Utils.unserialize(data);
-        db.remove(key);
-        return Utils.serialize(db);
+        return db.getOrDefault(key, defaultValue);
     }
 
     @Override
     public Map<String, String> toMap() {
         String data = Utils.readFile(path);
-        Map<String, String> db = Utils.unserialize(data);
-        return new HashMap<>(db);
+        return Utils.unserialize(data);
     }
 }
 // END
