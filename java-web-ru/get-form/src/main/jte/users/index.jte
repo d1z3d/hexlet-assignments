@@ -9,15 +9,16 @@
         </form>
 
 
-        <div>
-            @for(var user : page.getUsers())
-                <p>${user.getFirstName()}</p>
-            @endfor
-        </div>
     @else
         <form action="/users" method="get">
             <input type="search" name="term" value="" />
             <input type="submit" value="Search" />
         </form>
     @endif
+
+    <div>
+        @for(var user : page.getUsers())
+            <p>${user.getFirstName()}</p>
+        @endfor
+    </div>
 `)
