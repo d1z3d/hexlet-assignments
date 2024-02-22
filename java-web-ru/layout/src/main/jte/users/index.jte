@@ -12,7 +12,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">LastName</th>
                 <th scope="col">Email</th>
                 <th scope="col">Link</th>
             </tr>
@@ -21,8 +20,7 @@
             @for(var user : page.getUsers())
                 <tr>
                     <th scope="row">${user.getId()}</th>
-                    <td>${user.getFirstName()}</td>
-                    <td>${user.getLastName()}</td>
+                    <td>${user.getFirstName()} ${user.getLastName()}</td>
                     <td>${user.getEmail()}</td>
                     <td><a href="/users/${user.getId()}">Link</a></td>
                 </tr>
