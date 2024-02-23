@@ -33,11 +33,11 @@ public final class App {
         });
 
         app.post("/users", context -> {
-            var name = StringUtils.capitalize(context.formParam("name"));
+            var firstName = StringUtils.capitalize(context.formParam("firstName"));
             var lastName = StringUtils.capitalize(context.formParam("lastName"));
             var email = context.formParam("email").trim().toLowerCase();
             var password = Security.encrypt(context.formParam("password"));
-            var user = new User(name, lastName, email, password);
+            var user = new User(firstName, lastName, email, password);
             UserRepository.save(user);
             context.redirect("/users");
         });

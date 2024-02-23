@@ -3,7 +3,7 @@
         <div>
             <label>
                 Имя
-                <input type="text" name="name">
+                <input type="text" name="firstName">
             </label>
         </div>
         <div>
