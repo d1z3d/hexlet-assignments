@@ -15,9 +15,7 @@
                     <td>
                         ${user.getId()}
                     </td>
-                    <td>
-                        ${user.getFirstName()} ${user.getLastName()}
-                    </td>
+                    <td>${user.getFirstName()} ${user.getLastName()}</td>
                 </tr>
             @endfor
         </table>
