@@ -17,10 +17,9 @@ public class PostsController {
     // BEGIN
     public static void index(Context context) {
         var posts = PostRepository.getEntities();
-        var pagination = context.queryParamAsClass("pagination", Integer.class).getOrDefault(1);
-        System.out.println(pagination);
-        var page = new PostsPage(posts, pagination);
-        context.render("posts/index.jte", Collections.singletonMap("page", page));
+        var page = context.queryParamAsClass("page", Integer.class).getOrDefault(1);
+        var postsPage = new PostsPage(posts, page);
+        context.render("posts/index.jte", Collections.singletonMap("postsPage", postsPage));
     }
 
     public static void show(Context context) {
