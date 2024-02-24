@@ -37,7 +37,7 @@ public class UsersController {
             var id = context.pathParamAsClass("id", Long.class).get();
             var user = UserRepository.find(id)
                     .orElseThrow(() -> new NotFoundResponse("User not found"));
-            if (user.getToken().equals(tokenCookie) || user.getId().equals(id)) {
+            if (user.getToken().equals(tokenCookie) && user.getId().equals(id)) {
                 context.render("users/show.jte", Collections.singletonMap("user", user));
             } else {
                 context.redirect(NamedRoutes.buildUserPath());
