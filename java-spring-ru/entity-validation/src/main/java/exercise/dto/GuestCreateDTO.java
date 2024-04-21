@@ -1,9 +1,6 @@
 package exercise.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,19 +10,19 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class GuestCreateDTO {
-    @NotNull
+    @NotBlank
     private String name;
 
     @Email
     private String email;
 
-    @Pattern(regexp = "^+[0-9]{11,12}")
+    @Pattern(regexp = "\\+[0-9]{11,13}")
     private String phoneNumber;
 
-    @Pattern(regexp = "^[0-9]{4}")
+    @Pattern(regexp = "[0-9]{4}")
     private String clubCard;
 
-    @FutureOrPresent
+    @Future
     private LocalDate cardValidUntil;
 }
 // END
